@@ -35,36 +35,6 @@ spikeTrain = poissrnd(binLength*nonlinearOutput);
 
 
 
-
-%{
-% note that I'm assuming bins are small enough that we only worry about one
-% spike per bin
-uniformPDF = rand(length(nonlinearOutput),1);
-% probOfSpike = diag(binLength*nonlinearOutput)*exp(-binLength*nonlinearOutput); % this
-% is just the pdf for 1 spike, but I think we actually want the cdf
-
-CDF = diag(binLength*nonlinearOutput);
-probOfSpike = CDF*exp(-binLength*nonlinearOutput);
-figure; plot(probOfSpike)
-for i = 2:30;
-    CDF = CDF + diag(binLength*nonlinearOutput.^i)/factorial(i);
-    probOfSpike = CDF*exp(-binLength*nonlinearOutput);
-    figure; plot(probOfSpike)
-end
-
-probOfSpike = zeros(length(nonlinearOutput),1);
-for i = 1:length(nonlinearOutput)
-    CDF = 0;
-    for j = 1:50
-        CDF = CDF + ((binLength*nonlinearOutput(i))^j)/factorial(j);
-    end
-    probOfSpike(i) = -binLength*nonlinearOutput(i) + log(CDF);
-end
-
-probOfSpike = exp(probOfSpike);
-spikeTrain = (probOfSpike >= uniformPDF);
-%}
-
 if plots ~= 0
     figure; subplot(4,1,1), plot(stimulus),
     subplot(4,1,2), plot(linearOutput),
