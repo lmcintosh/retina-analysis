@@ -1,6 +1,6 @@
 iterations = 50;
 actualVar = zeros(iterations,1);
-time = linspace(10e2,10e6,iterations);
+time = round(linspace(10e2,10e6,iterations));
 expectedVar = linspace(1,10,iterations);
 
 for i = 1:iterations
