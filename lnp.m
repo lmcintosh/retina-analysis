@@ -18,9 +18,8 @@ mean = 0;
 if stimulusType == 0
     stimulus = sqrt(variance)*randn(time,1) + mean;
 else
-    stimulus = wiener(mean,variance,time,0); % random walk stimulus
-    % starting pt, variance, how long, figures?
-    stimulus = stimulus*0.2;
+    stimulus = wiener(mean,0,variance,time,0); % random walk stimulus
+    % starting pt, drift, variance, how long, figures?
 end
 
 % pass the stimulus through the linear filter
