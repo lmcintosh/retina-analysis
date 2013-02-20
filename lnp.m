@@ -1,7 +1,8 @@
-function [spikeTrain,stimulus] = lnp(time,resolution,point,slope,binLength,stimulusType,plots)
+function [spikeTrain,stimulus,nonlinearOutput] = lnp(time,resolution,point,slope,binLength,stimulusType,plots)
 % lnp is a linear-nonlinear-poisson cascade model used to model retinal ganglion neurons
 % INPUTS: time (duration of output), resolution (length of linear filter),
-% point (threshold), slope (slope of threshold), binLength, stimulusType, plots OUTPUTS: spikeTrain, stimulus
+% point (threshold), slope (slope of threshold), binLength, stimulusType (0,1,or vector), plots 
+% OUTPUTS: spikeTrain, stimulus, nonlinearOutput
 
 %time = 1000; % ms
 %resolution = 32;
@@ -17,9 +18,9 @@ variance = .1;
 mean = 0;
 if stimulusType == 0
     stimulus = sqrt(variance)*randn(time,1) + mean;
-else
-    stimulus = wiener(mean,0,variance,time,0); % random walk stimulus
-    % starting pt, drift, variance, how long, figures?
+elseif stimulusType == 1
+    stimulus = wiener(mean,0,sqrt(variance),time,0); % random walk stimulus
+    % starting pt, drift, standard deviation of samples at time t = 1, how long, figures?
 end
 
 % pass the stimulus through the linear filter
