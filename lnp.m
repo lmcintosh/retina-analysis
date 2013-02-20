@@ -21,6 +21,8 @@ if stimulusType == 0
 elseif stimulusType == 1
     stimulus = wiener(mean,0,sqrt(variance),time,0); % random walk stimulus
     % starting pt, drift, standard deviation of samples at time t = 1, how long, figures?
+else
+    stimulus = stimulusType;
 end
 
 % pass the stimulus through the linear filter
