@@ -1,5 +1,5 @@
 function [predictiveInfo] = LNPprediction(trials, time, numLNs, numRGCs, figures)
-% INPUTS: trials, time, numLNs, numRGCs, figures?
+% INPUTS: trials, time (ms), numLNs, numRGCs, figures?
 % OUTPUTS: predictiveInfo
 
 whiteORcorr = ones(trials,1); % record which trial is which
@@ -25,5 +25,9 @@ for trial = 1:trials
         [spikes,stim,nonlinearOutput{trial,bipolar}] = lnp(time,resolution,point,slope,binLength,stimulus,0);
     end
 end
+
+if numLNs/numRGCs > 1
+    for RGC = round(linspace(1,numLNs,numRGCs))
+        nonlinearOutput{:,RGC:RGC+round(numLNs/numRGCs)}
 
 
