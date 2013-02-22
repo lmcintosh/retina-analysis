@@ -1,6 +1,8 @@
 function checkerboard(sidelength,frequency)
 % Taken from tutorial http://docs.psychtoolbox.org/ExampleExperimentCheckerboard
 % texture based
+% INPUTS: sidelength, frequency
+% OUTPUTS: none
 
 maxduration = 20;
 
@@ -27,15 +29,15 @@ try
     checkerboard_heads = repmat(miniboard, ceil(0.5 .* numCheckers))';
     
     % invert for the other cycle
-    checkerboard_tails = 255 - checkerboard_heads;
+    % checkerboard_tails = 255 - checkerboard_heads;
 
     % scale the images up
     checkerboard_heads = imresize(checkerboard_heads,sidelength,'box');
-    checkerboard_tails = imresize(checkerboard_tails,sidelength,'box');
+    % checkerboard_tails = imresize(checkerboard_tails,sidelength,'box');
     
     % make textures clipped to screen size
     texture(1) = Screen('MakeTexture', win, checkerboard_heads(1:height,1:width));
-    texture(2) = Screen('MakeTexture', win, checkerboard_tails(1:height,1:width));
+    texture(2) = Screen('MakeTexture', win, checkerboard_heads(1:height,1:width)); % was _tails
     
     % don't need those anymore
     clear checkerboard_*; 
