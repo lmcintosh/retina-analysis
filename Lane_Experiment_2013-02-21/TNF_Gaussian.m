@@ -1,7 +1,7 @@
 function objSeed = TNF_Gaussian(checkers, sizes, maskMode, varargin)
 %   center is in screen pixels
 %   objSize is in screen pixels
-%   USage:  TNF_Gaussian([-1 ;-1], 200, 0)      uses center of screen
+%   Usage:  TNF_Gaussian([-1 ;-1], 200, 0)      uses center of screen
 %           TNF_Gaussian([14;16], 200, 0)     uses a specific checker center's
 %
 % config has 4 bits to change behaviour as follows:
