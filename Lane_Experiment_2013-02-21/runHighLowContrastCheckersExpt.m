@@ -13,7 +13,7 @@ ex.pa.random(si).stateAtStimStart = ex.pa.random(si).stream.State;
 
 %% loop over frames
 vbl = GetSecs;
-fi = 1;
+fi = 1; % this counts the # of frames
 try
 while fi <= ex.pa.nFrames && ~ex.kb.keyCode(ex.kb.escKey)
 	% make a spatial white noise texture

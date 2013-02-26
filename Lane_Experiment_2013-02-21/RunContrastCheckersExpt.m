@@ -1,16 +1,18 @@
-function ex = RunSimpleEdgesExpt(varargin)
+function ex = RunContrastCheckersExpt(varargin)
 %
-% FUNCTION ex = RunSimpleEdgesExpt(varargin)
+% FUNCTION ex = RunContrastCheckersExpt(varargin)
 %
-% The function RunSimpleEdgesExpt runs the experimental stimulus for the SimpleEdges
-% experiment. Two squarewave gratings are offset from one another in phase and drifting.
+% The function RunContrastCheckersExpt runs the experimental stimulus for the Predictive
+% Information experiment. Creates checkerboard with cases x=y and x=-y where
+% x is white noise or pink noise in time that switches between regimes of high and low 
+% contrast.
 %
-% (c) bnaecker@stanford.edu 24 Jan 2013 
+% Adapted from bnaecker@stanford.edu 24 Jan 2013 
 
 try
 
 %% parse varargin
-ex = parseSimpleEdgesInput(varargin{:});
+ex = parseHighLowContrastCheckersInput(varargin{:});
 
 %% setup keyboard
 ex = setupExptKB(ex);
