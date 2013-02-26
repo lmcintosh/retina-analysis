@@ -39,7 +39,8 @@ try
 % {
     pause(.2)
     TNF_Gaussian([-1;-1], 1200, 1)%, ...
-    
+    % you can alter default parameters by appending to the arguments something like, ...,'backContrast',.2)
+
     pause(.2)
     RF('movieDurationSecs', 600)
 %{
