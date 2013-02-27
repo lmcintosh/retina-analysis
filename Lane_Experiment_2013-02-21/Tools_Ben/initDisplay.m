@@ -4,7 +4,7 @@ function ex = initDisplay(ex)
 %
 % Initializes the display for most psychtoolbox experiments 
 %
-% (c) bnaecker@stanford.edu 24 Jan 2013 
+% Adapted from bnaecker@stanford.edu 24 Jan 2013 
 
 %% make sure PTB is working
 AssertOpenGL;
@@ -21,9 +21,9 @@ bgColor = 127.5 .* ones(1, 3);
 % only check on first portion
 cname = fullCName(1:10);
 
-% figure out which system we're one
+% figure out which system we're on
 if ~f
-	if strncmp(cname, 'Benjamin', 8) 
+	if strncmp(cname, 'Lane', 8) 
 		if max(Screen('Screens')) > 1
 			dType = 'dell';
 		else
@@ -45,7 +45,7 @@ if ~f
 	elseif strncmp(cname, 'baccuspc', 8);
 		dType = 'baccuspc';
 	else
-			dType = 'unknown';
+		dType = 'unknown';
 	end
 end
 
