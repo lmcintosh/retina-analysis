@@ -27,11 +27,22 @@ else
 	ex.pa.trigger = 'm';
 end
 
+% contrast for white-noise receptive field measurement
+if any(strcmpi('c', varargin))
+	%ex.pa.gratingContrast = varargin{find(strcmpi('c', varargin)) + 1};
+	ex.pa.whiteContrast = varargin{find(strcmpi('c', varargin)) + 1};
+    ex.pa.pinkContrast = varargin{find(strcmpi('c', varargin)) + 1};
+else
+	%ex.pa.gratingContrast = 0.25;
+	ex.pa.whiteContrast = 0.25;
+    ex.pa.pinkContrast = 0.25;
+end
+
 % contrast for high-contrast stimuli
 if any(strcmpi('cH', varargin))
 	%ex.pa.gratingContrast = varargin{find(strcmpi('c', varargin)) + 1};
-	ex.pa.whiteContrastH = varargin{find(strcmpi('c', varargin)) + 1};
-    ex.pa.pinkContrastH = varargin{find(strcmpi('c', varargin)) + 1};
+	ex.pa.whiteContrastH = varargin{find(strcmpi('cH', varargin)) + 1};
+    ex.pa.pinkContrastH = varargin{find(strcmpi('cH', varargin)) + 1};
 else
 	%ex.pa.gratingContrast = 0.25;
 	ex.pa.whiteContrastH = 0.35;
@@ -40,8 +51,8 @@ end
 
 % contrast for low-contrast stimuli
 if any(strcmpi('cL', varargin))
-    ex.pa.whiteContrastL = varargin{find(strcmpi('c', varargin)) + 1};
-    ex.pa.pinkContrastL = varargin{find(strcmpi('c', varargin)) + 1};
+    ex.pa.whiteContrastL = varargin{find(strcmpi('cL', varargin)) + 1};
+    ex.pa.pinkContrastL = varargin{find(strcmpi('cL', varargin)) + 1};
 else
     ex.pa.whiteContrastL = 0.05;
     ex.pa.pinkContrastL = 0.05;
@@ -66,4 +77,11 @@ if any(strcmpi('corrDur', varargin))
     ex.pa.corrDur = varargin{find(strcmpi('corrDur', varargin)) + 1};
 else
     ex.pa.corrDur = 40; % sec
+end
+
+% for each case have contrast X
+if any(strcmpi('contrastSeq', varargin))
+    ex.pa.contrastSeq = varargin{find(strcmpi('contrastSeq', varargin)) + 1};
+else
+    ex.pa.contrastSeq = {'low','high','low','high'};
 end

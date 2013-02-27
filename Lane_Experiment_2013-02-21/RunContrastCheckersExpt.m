@@ -21,7 +21,7 @@ ex = setupExptKB(ex);
 ex = initDisplay(ex);
 
 %% set up experimental parameters
-ex = setupSimpleEdgesParams(ex);
+ex = setupHighLowContrastCheckersParams(ex);
 
 %% make textures
 ex = makeSimpleEdgesTextures(ex);

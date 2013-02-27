@@ -20,8 +20,8 @@ ex.pa.date = datestr(now, 30);
 ex = makeSaveDirectory(ex);
 
 %% stimulus types
-% 2 white noise blocks appended at beginning
-tmp = cellstr(repmat('grating', ex.pa.nReps, 1));
+% 2 white noise blocks appended at beginning - for RF measurement?
+tmp = cellstr(repmat('checkers', ex.pa.nReps, 1));
 if ex.pa.useWhite
 	ex.pa.stimType = ['white'; 'white'; tmp];
 else
@@ -44,34 +44,14 @@ ex.pa.nBoxes = 64;							    % used as resolution for ALL stimuli
 ex.pa.whiteContrast = ex.pa.whiteContrast .* ones(ex.pa.nFrames, 1);
 ex.pa.whiteContrastIndex = ones(ex.pa.nFrames, 1);
 
-%% grating information
-ex.pa.gratingType = 'square';					% shape of the grating
-ex.pa.rfFactor = 2;							    % half-cycle is this many times a ganglion rf width
-ex.pa.rfWidth = 100;							% width of ganglion cell rf, microns
-ex.pa.gratingSF = (1 / ex.pa.rfFactor) * ...	% spatial frequency, cyc / pix
-	(1 / (2 * ex.pa.rfWidth)) * ...
-	ex.pa.umPerPix;
-ex.pa.gratingTF = 1;							% drift speed, cyc / sec
-ex.pa.offsetPerFrame = ex.pa.gratingTF * ...	% compute drift offset per frame
-	(1 / ex.pa.gratingSF) * ex.pa.waitFrames ...
-	* ex.ds.ifi;
-
-%% grating split positions
-ex.pa.nSplits = 5;
-ex.pa.splitPosition = ...					    % position of split btw two gratings, pct of aperture size
-	linspace(0.1, 0.9, ex.pa.nSplits);
-
-%% phase offset definitions
-ex.pa.nPhaseOffsets = 5;					    % number of phase offsets
-ex.pa.phaseOffset = ...						    % the standard phase offsets
-	linspace(0, 180, ex.pa.nPhaseOffsets);	
-
-%% create conditions (combos of splits and phases)
+%{
+%% create conditions
 conditionList = cartprod(...
 	ex.pa.splitPosition, ...
 	ex.pa.phaseOffset);
 ex.pa.nConditions = size(conditionList, 1);
 ex.pa.conditionList = conditionList(randperm(ex.pa.nConditions), :);
+%}
 
 %% compute number of frames per condition
 ex.pa.nFramesPerCondition = ex.pa.nFrames / ex.pa.nConditions;
