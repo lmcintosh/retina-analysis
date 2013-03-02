@@ -24,6 +24,9 @@ elseif strncmp(ex.pa.computerName, 'baccuspc', 8);
 		'\Ben\imgs\'];
 	ex.pa.saveDir = ['C:\Documents and Settings\Mike Menz\Desktop\Stimuli' ...
 		'\Ben\Data\' ex.pa.experimentName];
+elseif strncmp(ex.pa.computerName, 'Lane', 4);
+    ex.pa.saveDir = fullfile('~/Git/retina', ...
+        ex.pa.experimentName, 'TestData');
 end
 
 %% check if previous data folders exist from the same day

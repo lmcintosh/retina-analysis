@@ -17,6 +17,7 @@ Screen('Flip', ex.ds.winPtr);
 %% basic information
 ex.pa.experimentName = 'Lane';
 ex.pa.date = datestr(now, 30);
+%ex.pa.saveDir = 
 ex = makeSaveDirectory(ex);
 
 %% stimulus types

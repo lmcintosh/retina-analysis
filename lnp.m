@@ -38,10 +38,10 @@ spikeTrain = poissrnd(binLength*nonlinearOutput);
 
 
 if plots ~= 0
-    figure; subplot(4,1,1), plot(stimulus),
-    subplot(4,1,2), plot(linearOutput),
-    subplot(4,1,3), plot(nonlinearOutput),
-    subplot(4,1,4), plot(spikeTrain,'r.')
+    figure; subplot(4,1,1), plot(stimulus), title('Stimulus'),
+    subplot(4,1,2), plot(linearOutput), title('Linear Output'),
+    subplot(4,1,3), plot(nonlinearOutput), title('Nonlinear Output'),
+    subplot(4,1,4), plot(spikeTrain,'r.'), title('Spikes')
 end
 
 %rasters(spikeTrain)
