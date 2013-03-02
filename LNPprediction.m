@@ -6,7 +6,7 @@ whiteORcorr = ones(trials,1); % record which trial is which
 nonlinearOutput = cell(trials,1); % store all bipolar outputs for each trial
 
 filterLength = 30;
-point = .5*10e4;
+point = .5;
 slope = 2;
 binLength = 1;
 avg = 0; drift = 0;
@@ -19,7 +19,8 @@ whiteORcorr(1:floor(trials/2)) = 0; % here we're just splitting the trials in ha
 
 % Initialize info variables
 h = zeros(trials-1,3);
-mi = zeros(trials-1,1);
+mi_white = zeros(trials-1,1);
+mi_pink = zeros(trials-1,1);
 
 
 for trial = 1:trials
@@ -34,12 +35,14 @@ for t = 1:time/binLength - binLength
     [h_pink(t,:), mi_pink(t), ~] =  Inxn(spiketrains(t,whiteORcorr==1),spiketrains(t+1,whiteORcorr==1),2,0,1);
 end
 
-times = linspace(0,time,time/binLength);
+times = linspace(0,time,time/binLength-binLength);
 
 figure;
 subplot(2,1,1), plot(times,mi_white), title('Mutual Information - White Stim'),
 subplot(2,1,2), plot(times,mi_pink), title('Mutual Information - Pink Stim')
 
+
+predictiveInfo = [col(mi_white), col(mi_pink)];
 
 
 

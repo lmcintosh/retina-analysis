@@ -21,6 +21,7 @@ if stimulusType == 0
 elseif stimulusType == 1
     load pinknoise;
     allowedStart = length(x) - (time/binLength + 1);
+    startFrame = ceil(allowedStart*rand(1));
     x(1:startFrame)=[];
     x((time/binLength)+1:end)=[];
 
