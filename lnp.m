@@ -15,11 +15,18 @@ kernel = linearKernel(1,-0.5,1,resolution); % inputs: freq, phase, var, resoluti
 
 % create the stimulus
 variance = .1;
-mean = 0;
+meanStim = 0;
 if stimulusType == 0
-    stimulus = sqrt(variance)*randn(time,1) + mean;
+    stimulus = sqrt(variance)*randn(time/binLength,1) + meanStim;
 elseif stimulusType == 1
-    stimulus = wiener(mean,0,sqrt(variance),time,0); % random walk stimulus
+    load pinknoise;
+    allowedStart = length(x) - (time/binLength + 1);
+    x(1:startFrame)=[];
+    x((time/binLength)+1:end)=[];
+
+    Xstd = std(x);
+    stimulus = x.*sqrt(variance)/Xstd + meanStim;  
+    %stimulus = wiener(mean,0,sqrt(variance),time,0); % random walk stimulus
     % starting pt, drift, standard deviation of samples at time t = 1, how long, figures?
 else
     stimulus = stimulusType;
