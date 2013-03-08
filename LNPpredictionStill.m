@@ -24,7 +24,7 @@ stimulus = zeros(time/binLength,trials);
 whiteORcorr(1:floor(trials/2)) = 0; % here we're just splitting the trials in half between white noise and pink noise
 
 % Initialize info variables
-h = zeros(trials-1,3);
+%h = zeros(trials-1,3);
 mi_white = zeros(time/binLength-binLength,1);
 mi_pink = zeros(time/binLength-binLength,1);
 
@@ -37,8 +37,8 @@ tmp = find(spiketrains>1);
 spiketrains(tmp) = 1; % clip spike trains at 1
 
 for t = 1:time/binLength - binLength
-    [h_white(t,:), mi_white(t), ~] = Inxn(spiketrains(t,whiteORcorr==0),spiketrains(t+1,whiteORcorr==0),2,0,1);
-    [h_pink(t,:), mi_pink(t), ~] =  Inxn(spiketrains(t,whiteORcorr==1),spiketrains(t+1,whiteORcorr==1),2,0,1);
+    mi_white(t) = mutualinfo(spiketrains(t,whiteORcorr==0),stimulus(t+1,whiteORcorr==0));
+    mi_pink(t) = mutualinfo(spiketrains(t,whiteORcorr==1),stimulus(t+1,whiteORcorr==1));
 end
 
 times = linspace(0,time,time/binLength-binLength);
