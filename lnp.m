@@ -26,7 +26,8 @@ elseif stimulusType == 1
     x((time/binLength)+1:end)=[];
 
     Xstd = std(x);
-    stimulus = x.*sqrt(variance)/Xstd + meanStim;  
+    stimulus = x.*sqrt(variance)/Xstd;
+    stimulus = stimulus - mean(stimulus) + meanStim;
     %stimulus = wiener(mean,0,sqrt(variance),time,0); % random walk stimulus
     % starting pt, drift, standard deviation of samples at time t = 1, how long, figures?
 else

@@ -1,4 +1,4 @@
-function [predictiveInfo] = LNPprediction(trials, time, figures)
+function [predictiveInfo,stimulus,whiteORcorr,spiketrains] = LNPprediction(trials, time, figures)
 % INPUTS: trials, time (ms), numLNs, numRGCs, figures?
 % OUTPUTS: predictiveInfo
 
@@ -38,8 +38,16 @@ end
 times = linspace(0,time,time/binLength-binLength);
 
 figure;
-subplot(2,1,1), plot(times,mi_white), title('Mutual Information - White Stim'),
-subplot(2,1,2), plot(times,mi_pink), title('Mutual Information - Pink Stim')
+subplot(1,2,1), plot(times,mi_white), title('Mutual Information - White Stim'),
+subplot(1,2,2), plot(times,mi_pink), title('Mutual Information - Pink Stim')
+
+figure;
+subplot(1,2,1), plot(times,h_white), title('Entropy - White Stim'),
+subplot(1,2,2), plot(times,h_pink), title('Entropy - Pink Stim')
+
+%figure;
+%plot(stimulus)
+
 
 
 predictiveInfo = [col(mi_white), col(mi_pink)];
