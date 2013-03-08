@@ -19,8 +19,8 @@ whiteORcorr(1:floor(trials/2)) = 0; % here we're just splitting the trials in ha
 
 % Initialize info variables
 h = zeros(trials-1,3);
-mi_white = zeros(trials-1,1);
-mi_pink = zeros(trials-1,1);
+mi_white = zeros(time/binLength-binLength,1);
+mi_pink = zeros(time/binLength-binLength,1);
 
 
 for trial = 1:trials
