@@ -17,32 +17,46 @@ sizeFlt = size(predictiveInfo_p,3);
 sizeVar = size(predictiveInfo_p,4);
 
 % points x filterLength
-fig1_p = zeros(sizeFlt,sizePts);
-fig1_w = temp_p;
+fig1_p = zeros(sizePts,sizeFlt);
+fig1_w = fig1_p;
 for i = 1:sizeFlt
     for j = 1:sizePts
-        fig1_p(i,j) = predictiveInfo_p(2,j,i,4);
-        fig1_w(i,j) = predictiveInfo_w(2,j,i,4);
+        fig1_p(j,i) = predictiveInfo_p(2,j,i,4);
+        fig1_w(j,i) = predictiveInfo_w(2,j,i,4);
     end
 end
 
-fig2_p = zeros(sizeFlt,sizeVar);
-fig2_w = temp_p;
+fig2_p = zeros(sizeVar,sizeFlt);
+fig2_w = fig2_p;
 for i = 1:sizeFlt
     for j = 1:sizeVar
-        fig2_p(i,j) = predictiveInfo_p(2,4,i,j);
-        fig2_w(i,j) = predictiveInfo_w(2,4,i,j);
+        fig2_p(j,i) = predictiveInfo_p(2,4,i,j);
+        fig2_w(j,i) = predictiveInfo_w(2,4,i,j);
     end
 end
 
-fig3_p = zeros(sizeSlps,sizePts);
-fig3_w = temp_p;
+fig3_p = zeros(sizePts,sizeSlps);
+fig3_w = fig3_p;
 for i = 1:sizeSlps
     for j = 1:sizePts
-        fig3_p(i,j) = predictiveInfo_p(i,j,5,4);
-        fig3_w(i,j) = predictiveInfo_w(i,j,5,4);
+        fig3_p(j,i) = predictiveInfo_p(i,j,5,4);
+        fig3_w(j,i) = predictiveInfo_w(i,j,5,4);
     end
 end
 
 
+figure;
+imagesc(fig1_p)
+colorbar
+title('Predictive information as function of filter and threshold position, pink noise')
+xlabel('Filter integration time')
+ylabel('Threshold position')
+
+
+figure;
+imagesc(fig1_w)
+colorbar
+title('Predictive information as function of filter and threshold position, white noise')
+xlabel('Filter integration time')
+ylabel('Threshold position')
 
