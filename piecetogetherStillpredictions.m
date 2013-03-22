@@ -17,11 +17,32 @@ sizeFlt = size(predictiveInfo_p,3);
 sizeVar = size(predictiveInfo_p,4);
 
 % points x filterLength
-temp_p = zeros(sizeFlt,sizePts);
-temp_w = temp_p;
+fig1_p = zeros(sizeFlt,sizePts);
+fig1_w = temp_p;
 for i = 1:sizeFlt
     for j = 1:sizePts
-        temp_p(i,j) = predictiveInfo_p(2,j,i,4);
-        temp_w(i,j) = predictiveInfo_w(2,j,i,4);
+        fig1_p(i,j) = predictiveInfo_p(2,j,i,4);
+        fig1_w(i,j) = predictiveInfo_w(2,j,i,4);
     end
 end
+
+fig2_p = zeros(sizeFlt,sizeVar);
+fig2_w = temp_p;
+for i = 1:sizeFlt
+    for j = 1:sizeVar
+        fig2_p(i,j) = predictiveInfo_p(2,4,i,j);
+        fig2_w(i,j) = predictiveInfo_w(2,4,i,j);
+    end
+end
+
+fig3_p = zeros(sizeSlps,sizePts);
+fig3_w = temp_p;
+for i = 1:sizeSlps
+    for j = 1:sizePts
+        fig3_p(i,j) = predictiveInfo_p(i,j,5,4);
+        fig3_w(i,j) = predictiveInfo_w(i,j,5,4);
+    end
+end
+
+
+

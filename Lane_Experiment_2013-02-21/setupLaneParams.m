@@ -17,7 +17,7 @@ Screen('Flip', ex.ds.winPtr);
 %% basic information
 ex.pa.experimentName = 'Lane';
 ex.pa.date = datestr(now, 30);
-%ex.pa.saveDir = 
+ex.pa.saveDir = '~/Git/retina';
 ex = makeSaveDirectory(ex);
 
 %% stimulus types
@@ -56,8 +56,8 @@ ex.pa.conditionList = cartprod(...
 ex.pa.nConditions = size(ex.pa.conditionList, 1);
 
 %% make correlations condition
-cs = vec(ones(ex.pa.nFrames / 2, 1) * corrs);
-tmp = vec(ones(ex.pa.nFrames / 8, 1) * repmat(contrasts, 1, 4));
+cs = row(ones(ex.pa.nFrames / 2, 1) * corrs);
+tmp = row(ones(ex.pa.nFrames / 8, 1) * repmat(contrasts, 1, 4));
 ex.pa.conditions = [cs tmp];
 
 %% random seed for each stimulus block
