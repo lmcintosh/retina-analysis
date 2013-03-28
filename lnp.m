@@ -36,7 +36,7 @@ end
 
 % pass the stimulus through the linear filter
 tmp = conv(stimulus,kernel,'full'); % should this be 'full' to maintain causality, and then snip the end?
-linearOutput = tmp(2:(length(tmp)-length(stimulus))); % see pg 48 in lab notebook
+linearOutput = tmp(1:(length(tmp)-length(kernel)+1)); % see pg 48 in lab notebook
 
 
 
