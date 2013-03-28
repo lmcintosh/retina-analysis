@@ -35,7 +35,9 @@ else
 end
 
 % pass the stimulus through the linear filter
-linearOutput = conv(stimulus,kernel,'same'); % should this be 'full' to maintain causality, and then snip the end?
+tmp = conv(stimulus,kernel,'full'); % should this be 'full' to maintain causality, and then snip the end?
+linearOutput = tmp(2:(length(tmp)-length(stimulus))); % see pg 48 in lab notebook
+
 
 
 % pass the linear filter's output through the nonlinearity/threshold
